@@ -23,7 +23,10 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
   env: { "NUGET_RESTORE_MSBUILD_ARGS": '/p:DotfuscatorMSBuildDir="$(Agent.TempDirectory)\PreEmptive.Protection.Dotfuscator.Pro.Eval\tools\msbuilddir"' }
-
+- task: NuGetCommand@2
+  displayName: 'NuGet restore'
+  inputs:
+    restoreSolution: '$(Parameters.restorePkgSolution)'
 - task: XamarinAndroid@1
   inputs:
     projectFile: '**/*.csproj'
