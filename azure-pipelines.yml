@@ -19,6 +19,14 @@ steps:
   inputs:
     command: 'custom'
     arguments: 'install PreEmptive.Protection.Dotfuscator.Pro.Eval -OutputDirectory $(Agent.TempDirectory) -PreRelease -x -Source https://pkgs.dev.azure.com/MegiTeneqexhi/MegiTeneqexhi/_packaging/PreEmptive.Protection.Dotfuscator.Pro/nuget/v3/index.json'
+- task: DownloadGitHubNugetPackage@1
+  inputs:
+- task: DownloadGitHubNugetPackage@1
+  inputs:
+    packageName: 'Xamarin.Essentials'
+    version: '1.6.1'
+    packageName: 'Xamarin.AndroidX.AppCompat'
+    version: '1.2.0.5'
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
