@@ -24,9 +24,15 @@ steps:
     restoreSolution: '$(solution)'
   env: { "NUGET_RESTORE_MSBUILD_ARGS": '/p:DotfuscatorMSBuildDir="$(Agent.TempDirectory)\PreEmptive.Protection.Dotfuscator.Pro.Eval\tools\msbuilddir"' }
 - task: NuGetCommand@2
-  displayName: 'NuGet restore'
   inputs:
-    restoreSolution: '$(Parameters.restorePkgSolution)'
+    command: 'push'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: 'Xamarin1'
+- task: NuGetCommand@2
+  inputs:
+    command: 'push'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: 'Xamarin2'
 - task: XamarinAndroid@1
   inputs:
     projectFile: '**/*.csproj'
