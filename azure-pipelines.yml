@@ -24,9 +24,10 @@ steps:
     restoreSolution: '$(solution)'
   env: { "NUGET_RESTORE_MSBUILD_ARGS": '/p:DotfuscatorMSBuildDir="$(Agent.TempDirectory)\PreEmptive.Protection.Dotfuscator.Pro.Eval\tools\msbuilddir"' }
 
-- task: XamarinAndroid@1
+- task: VSBuild@1
+  displayName: 'Restore Packages'
   inputs:
-    projectFile: '**/*.csproj'
-    outputDirectory: '$(outputDirectory)'
+    solution: '**/$(solutionName)'
     configuration: '$(buildConfiguration)'
-    msbuildArguments: '/p:DotfuscatorMSBuildDir="$(Agent.TempDirectory)\PreEmptive.Protection.Dotfuscator.Pro.Eval\tools\msbuilddir" /p:DotfuscatorLicense="0E3DA747DF7C4106B645EDCE317C7C78:megi.teneqexhi@univie.ac.at"'
+    vsVersion: '16.0'
+    msbuildArgs: '/t:Restore /p:DotfuscatorMSBuildDir="$(Agent.TempDirectory)\PreEmptive.Protection.Dotfuscator.Pro.Eval\tools\msbuilddir" /p:DotfuscatorLicense="0E3DA747DF7C4106B645EDCE317C7C78:megi.teneqexhi@univie.ac.at"'
