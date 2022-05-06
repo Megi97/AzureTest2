@@ -23,15 +23,6 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
   env: { "NUGET_RESTORE_MSBUILD_ARGS": '/p:DotfuscatorMSBuildDir="$(Agent.TempDirectory)\PreEmptive.Protection.Dotfuscator.Pro.Eval\tools\msbuilddir"' }
-- task: NuGetAuthenticate@0
-  inputs:
-    nuGetServiceConnections: 'https://www.nuget.org/packages/Xamarin.Google.Android.Material'
-- task: NuGetCommand@2
-  inputs:
-    command: push
-    nuGetFeedType: external
-    versioningScheme: byEnvVar
-    versionEnvVar: 1.0.0.1
 
 - task: XamarinAndroid@1
   inputs:
