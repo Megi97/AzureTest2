@@ -7,7 +7,7 @@ trigger:
 - main
 
 pool:
-  vmImage: 'macos-latest'
+  name: 'MegiPC'
 
 variables:
   buildConfiguration: 'Release'
@@ -18,7 +18,7 @@ steps:
 - task: NuGetCommand@2
   inputs:
     command: 'custom'
-    arguments: 'install PreEmptive.Protection.Dotfuscator.Pro.Eval -OutputDirectory $(Agent.TempDirectory) -PreRelease -x -Source https://pkgs.dev.azure.com/MegiTeneqexhi/MegiTeneqexhi/_packaging/Xamarin1/nuget/v3/index.json'
+    arguments: 'install PreEmptive.Protection.Dotfuscator.Pro.Eval -OutputDirectory $(Agent.TempDirectory) -PreRelease -x -Source https://pkgs.dev.azure.com/MegiTeneqexhi/MegiTeneqexhi/_packaging/Xamarin3/nuget/v3/index.json'
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
