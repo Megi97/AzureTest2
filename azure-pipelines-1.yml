@@ -14,12 +14,12 @@ variables:
   outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
 
 steps:
-- task: DotNetCoreInstaller@1
-- task: DotNetCoreCLI@2
+- task: NuGetToolInstaller@1
+- task: NuGetCommand@2
   inputs:
     command: 'custom'
     arguments: 'install PreEmptive.Protection.Dotfuscator.Pro.Eval -OutputDirectory $(Agent.TempDirectory) -PreRelease -x -Source https://pkgs.dev.azure.com/MegiTeneqexhi/MegiTeneqexhi/_packaging/Xamarin1/nuget/v3/index.json'
-- task: DotNetCoreCLI@2
+- task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
   env: { "NUGET_RESTORE_MSBUILD_ARGS": '/p:DotfuscatorMSBuildDir="$(Agent.TempDirectory)\PreEmptive.Protection.Dotfuscator.Pro.Eval\tools\msbuilddir"' }
