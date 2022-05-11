@@ -15,13 +15,18 @@ variables:
 
 steps:
 - task: NuGetToolInstaller@1
-
 - task: NuGetCommand@2
   inputs:
-    restoreSolution: '**/*.sln'
+    command: 'custom'
+    arguments: 'install PreEmptive.Protection.Dotfuscator.Pro.Eval -OutputDirectory $(Agent.TempDirectory) -PreRelease -x -Source https://pkgs.dev.azure.com/MegiTeneqexhi/MegiTeneqexhi/_packaging/PreEmptive.Protection.Dotfuscator.Pro/nuget/v3/index.json'
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(solution)'
+  env: { "NUGET_RESTORE_MSBUILD_ARGS": '/p:DotfuscatorMSBuildDir="$(Agent.TempDirectory)\PreEmptive.Protection.Dotfuscator.Pro.Eval\tools\msbuilddir"' }
 
 - task: XamarinAndroid@1
   inputs:
-    projectFile: '**/*droid*.csproj'
+    projectFile: '**/*.csproj'
     outputDirectory: '$(outputDirectory)'
     configuration: '$(buildConfiguration)'
+    msbuildArguments: '/p:DotfuscatorMSBuildDir="$(Agent.TempDirectory)\PreEmptive.Protection.Dotfuscator.Pro.Eval\tools\msbuilddir" /p:DotfuscatorLicense="0E3DA747DF7C4106B645EDCE317C7C78:megi.teneqexhi@univie.ac.at"/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
