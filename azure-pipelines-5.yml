@@ -10,9 +10,6 @@ pool:
   name: 'MegiPC'
 
 variables:
- 
-  outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
-  solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 steps:
