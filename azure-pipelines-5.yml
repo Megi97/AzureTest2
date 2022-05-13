@@ -12,6 +12,7 @@ pool:
 variables:
   buildConfiguration: 'Release'
   outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
+  solution: '**/*.sln'
 
 steps:
 - task: NuGetToolInstaller@1
@@ -28,7 +29,7 @@ steps:
 
   inputs:
 
-    solution: '$(solution)'
+    solution: '**/*.sln'
 
     msbuildArgs: '/p:DotfuscatorMSBuildDir=$(Build.Repository.LocalPath)\nugetinstall\PreEmptive.Protection.Dotfuscator.Pro.Eval\tools\msbuilddir'
 
