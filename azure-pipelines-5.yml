@@ -10,10 +10,11 @@ pool:
   name: 'MegiPC'
 
 variables:
-  buildConfiguration: 'Release'
+ 
   outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
   solution: '**/*.sln'
-
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
 steps:
 - task: NuGetToolInstaller@1
 - task: NuGetCommand@2
@@ -33,6 +34,6 @@ steps:
 
     msbuildArgs: '/p:DotfuscatorMSBuildDir=$(Build.Repository.LocalPath)\nugetinstall\PreEmptive.Protection.Dotfuscator.Pro.Eval\tools\msbuilddir'
 
-    platform: '$(BuildPlatform)'
+    platform: '$(buildPlatform)'
 
-    configuration: '$(BuildConfiguration)'
+    configuration: '$(buildConfiguration)'
