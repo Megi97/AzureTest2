@@ -28,7 +28,7 @@ steps:
 
   inputs:
 
-    solution: '$(Parameters.solution)'
+    solution: '$(solution)'
 
     msbuildArgs: '/p:DotfuscatorMSBuildDir=$(Build.Repository.LocalPath)\nugetinstall\PreEmptive.Protection.Dotfuscator.Pro.Eval\tools\msbuilddir'
 
